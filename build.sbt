@@ -8,11 +8,11 @@ lazy val common = (project in file("common"))
   .settings(name := "common", libraryDependencies ++= endpointsCommon)
 
 lazy val server = (project in file("server"))
-  .settings(name := "server", libraryDependencies ++= Seq(endpointsServer))
+  .settings(name := "server", libraryDependencies += endpointsServer)
   .dependsOn(common)
 
 lazy val client = (project in file("client"))
-  .settings(name := "client", libraryDependencies ++= Seq(endpointsClient))
-  .dependsOn(common)
+  .settings(name := "client", libraryDependencies += endpointsClient)
+  .dependsOn(server)
 
 lazy val root = (project in file(".")).aggregate(common, server, client)
